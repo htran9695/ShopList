@@ -1,0 +1,27 @@
+<div class="container">
+  <h2><%= @list.name %></h2>
+  <p class="list-description"><%= @list.description %></p>
+  <% items = @list.items %>
+  <h4>List:</h4>
+  <% if !items.any? %>
+      <%= "<p>-empty-</p>".html_safe %>
+  <% else %>
+      <ul>
+        <% items.each do |item| %>
+
+            <li><%= item.quantity %> <%= item.name %> <%= link_to 'Remove', list_item_path(@list, item), method: :delete, data: { confirm: 'Are you sure about this?' } %>
+            <%= link_to 'Up',list_item_path(@list, item)%></li>
+            <%= link_to 'Down',list_item_path(@list, item)%></li>
+            <%= link_to 'Top',list_item_path(@list, item)%></li>
+            <%= link_to 'Bottom',list_item_path(@list, item)%></li>
+        <% end %>
+      </ul>
+  <% end %>
+  <p class="add-item-button"><%= link_to 'Add Item', new_list_item_path(@list) %></p>
+
+</div>
+
+<div class="container">
+  <p><%= %></p>
+</div>
+

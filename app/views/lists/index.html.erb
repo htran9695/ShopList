@@ -1,0 +1,30 @@
+<%- model_class = List -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<div class="container">
+  <% @lists.each do |list| %>
+      <div class="container list-container col-sm-10 col-md-4 col-lg-3">
+        <h2><%= list.name %></h2>
+        <p class="list-description"><%= list.description %></p>
+        <ul>
+
+          <% items = list.items %>
+
+          <%= "<h4>List:</h4>".html_safe if items.any? %>
+
+          <% items.each do |item| %>
+              <li><%= item.quantity %> <%= item.name %></li>
+          <% end %>
+        </ul>
+        <ul class="nav navbar-nav">
+          <li><%= link_to 'Show', list_path(list) %></li>
+          <li><%= link_to 'Edit', edit_list_path(list) %></li>
+          <li><%= link_to 'Delete', list_path(list),
+                          method: :delete,
+                          data: { confirm: 'Are you sure about this?' }%></li>
+        </ul>
+      </div>
+  <% end %>
+</div>
+
